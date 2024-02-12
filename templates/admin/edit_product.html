@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Produk</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #eaf7eb;
+            background-image: url('{{ url_for('static', filename='img/657fd48eec9cb4.80984163Processed.jpeg') }}'); /* Replace 'your-background-image.jpg' with your image path */
+            background-attachment: fixed; 
+            background-size: cover; 
+        }
+
+        h1 {
+            color: #007f4f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: rgba(123, 200, 140, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            border: 8px solid #027938; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            margin-top: 50px; 
+        }
+
+        .form-group {
+            margin-bottom: 15px; 
+        }
+
+        input[type='text'],
+        input[type='number'] {
+            max-width: 100%; 
+            width: 100%; 
+        }
+
+        button[type='submit'] {
+            width: 100%;
+            background-color: #007f4f; 
+            border-color: #007f4f; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Edit Produk</h1>
+        <form method="post" action="{{ url_for('edit_product', product_id=product._id) }}">
+            <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="image">Gambar:</label>
+                <input type="text" id="image" name="image" class="form-control" required>
+            </div>
+    
+           <!-- Di dalam formulir edit_product.html -->
+            <div class="form-group">
+                <label for="deskription">Deskripsi:</label>
+                <input type="text" id="deskription" name="description" class="form-control" value="{{ product.description }}" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="stock">Stok:</label>
+                <input type="number" id="stock" name="stock" class="form-control" value="{{ product.stock }}" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="price">Harga:</label>
+                <input type="number" id="price" name="price" step="0.01" class="form-control" required>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Tambahkan Produk</button>
+        </form>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

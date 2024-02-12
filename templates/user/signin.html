@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <style>
+     body {
+      align-items: center;
+      background-image: url('{{ url_for('static', filename='img/Kitten-new-home-1024x683.jpg.jpeg') }}');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      height: 100vh;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .konten-kiri {
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      height: 82vh;
+      margin-left: 125px;
+      width: 600px;
+    }
+
+    .form-sign-in {
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      height: 75vh;
+      justify-content: center;
+      margin-right: 125px;
+      max-width: 90%;
+      padding: 20px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .field-input {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input {
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 15px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    input:focus {
+      border-color: #87CEEB;
+      box-shadow: 0 0 5px #87CEEB;
+      outline: none;
+    }
+
+    a.tombol-sign-up {
+    text-decoration: none;
+}
+
+    .tombol-sign-in,
+    .tombol-sign-up {
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+
+    .tombol-sign-in {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .tombol-sign-up {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .atau {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="konten-kiri" style="text-align: center; position: relative;">
+    <pre style="position: absolute; top: 280px; left: 30px; font-size: 40px">
+  /\_/\  
+ ( o.o ) 
+> ^ <
+    </pre>
+
+    <pre style="position: absolute; top: 280px; right: 50px; font-size: 40px">
+   /\_/\
+   ( o.o )
+   > ^ <
+    </pre>
+
+    <h2>Tips Menjaga Nutrisi Anak Kucing.</h2>
+    <p style="margin-left: 10px; margin-right: 10px;">
+        1. <strong>Pemberian Makanan yang Seimbang.</strong><br>Pastikan memberikan makanan yang seimbang dalam nutrisi, seperti protein, lemak, vitamin, dan mineral yang dibutuhkan oleh anak kucing dalam pertumbuhan mereka. Juga perhatikan jadwal makannya untuk lebih teratur.
+    </p>
+    <p style="margin-left: 10px; margin-right: 10px;">
+        2. <strong>Air Bersih Selalu Tersedia.</strong><br>Pastikan anak kucing selalu memiliki akses ke air bersih. Hal ini penting untuk menjaga hidrasi mereka, terutama saat mengonsumsi makanan kering.
+    </p>
+    <p style="margin-left: 10px; margin-right: 10px;">
+        3. <strong>Konsultasi dengan Dokter Hewan.</strong><br>Konsultasikan rencana nutrisi anak kucing Anda dengan dokter hewan. Mereka dapat memberikan panduan yang spesifik sesuai kebutuhan kucing Anda berdasarkan usia, berat badan, dan kondisi kesehatan mereka.
+    </p>
+</div>
+
+  <div class="form-sign-in">
+    <form class="field-input" id="signInForm" method="POST" action="/signin">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+      <div class="penjelasan">
+        <h4>Anda harus Sign In terlebih dahulu untuk melakukan Check Out.</h4>
+      </div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Masukkan email..." required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Masukkan password..." required>
+      <button type="submit" class="tombol-sign-in">Sign In</button>
+    </form>
+    <div class="atau">Atau</div>
+    <a href="{{ url_for('signup') }}" class="tombol-sign-up">Sign Up</a>
+
+  </div>
+
+</body>
+
+</html>

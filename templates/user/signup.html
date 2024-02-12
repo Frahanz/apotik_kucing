@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <style>
+    body {
+      align-items: center;
+      background-image: url('{{ url_for('static', filename='img/Kitten-new-home-1024x683.jpg.jpeg') }}');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+    }
+
+    .konten-kiri {
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      height: 82vh;
+      margin-left: 125px;
+      width: 600px;
+    }
+
+    .form-sign-up {
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      height: 75vh;
+      justify-content: center;
+      margin-right: 125px;
+      max-width: 90%;
+      padding: 20px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .field-input {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .nama {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    .nama input {
+      margin-right: 4%;
+      width: 48%;
+    }
+
+    .label-nama {
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input {
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 15px;
+      outline: none;
+      padding: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      width: 100%;
+    }
+
+    input::placeholder {
+      color: #999;
+      font-size: 0.9em;
+    }
+
+    input:focus {
+      border-color: #87CEEB;
+      box-shadow: 0 0 5px #87CEEB;
+    }
+
+    .tombol-sign-up {
+      background-color: #28a745;
+      border: none;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="konten-kiri" style="text-align: center; position: relative;">
+    <pre style="position: absolute; top: 310px; left: 30px; font-size: 30px">
+  /\_/\  
+ ( o.o ) 
+> ^ <
+    </pre>
+
+    <pre style="position: absolute; top: 310px; right: 50px; font-size: 30px">
+   /\_/\
+   ( o.o )
+   > ^ <
+    </pre>
+
+    <h2>Isyarat-isyarat kucing yang dapat anda kenali.</h2>
+    <p style="margin-left: 10px; margin-right: 10px;">
+        1. <strong>Gerak Tubuh.</strong><br>Perhatikan gerakan ekor yang lincah, telinga yang tertarik, dan postur tubuhnya yang lentur. Semua ini adalah isyarat penting yang mengungkapkan perasaan dan keadaan emosionalnya.
+    </p>
+    <p style="margin-left: 10px; margin-right: 10px;">
+        2. <strong>Bahasa Bunyi.</strong><br>Dari "meow" hingga suara lembutnya saat menggeliat, kucing mengkomunikasikan keinginan dan keperluannya. Mempelajari berbagai suara mereka membantu memahami apa yang ingin mereka sampaikan.
+    </p>
+    <p style="margin-left: 10px; margin-right: 10px;">
+        3. <strong>Tempat Bermain.</strong><br>Bermain adalah cara kucing menyampaikan kebahagiaan dan memelihara kesehatan fisiknya. Wilayahnya adalah bagian penting dari identitasnya; sediakan ruang dan mainan yang tepat untuk memastikan kebahagiaannya.
+    </p>
+</div>
+  <div class="form-sign-up">
+    <form class="field-input" action="/signup" method="POST">
+      <div class="penjelasan">
+        <h4>Silakan Sign Up untuk membuat akun baru.</h4>
+      </div>
+      <label for="nama" class="label-nama">Nama:</label>
+      <div class="nama">
+        <input type="text" id="nama_depan" name="nama_depan" placeholder="Nama Depan" required>
+        <input type="text" id="nama_belakang" name="nama_belakang" placeholder="Nama Belakang" required>
+      </div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Alamat Email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <label for="konfirmasi-password">Konfirmasi Password:</label>
+      <input type="password" id="konfirmasi-password" name="konfirmasi-password" placeholder="Tulis ulang password"
+        required>
+      <button type="submit" class="tombol-sign-up">Sign Up</button>
+    </form>
+</body>
+
+</html>

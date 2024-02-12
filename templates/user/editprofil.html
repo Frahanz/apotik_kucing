@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Profil</title>
+    <style>
+      body {
+        align-items: center;
+        background-image: url("{{ url_for("static", filename="img/Kitten-new-home-1024x683.jpg.jpeg") }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container-edit-profil {
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+        width: 300px;
+      }
+
+      .form-edit-profil {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      .foto-profil {
+        align-items: center;
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      #foto {
+        border-radius: 50%;
+        clip-path: circle(50% at center);
+        height: 140px;
+        margin-right: 20px;
+        overflow: hidden;
+        width: 140px;
+      }
+
+      .inputan {
+        align-items: center;
+        display: flex;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .tombol-konfirm {
+        background-color: #28a745;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      .tombol-upload {
+        background-color: #007bff;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+        padding: 5px 8px;
+        position: relative;
+      }
+
+      .tombol-upload input[type="file"] {
+        cursor: pointer;
+        font-size: 20px;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      #preview {
+        clip-path: circle(50% at center);
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      button {
+        margin-left: 10px;
+      }
+
+      input {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 15px;
+        margin-top: 5px;
+        outline: none;
+        padding: 8px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        width: 50%;
+      }
+
+      input::placeholder {
+        color: #999;
+        font-size: 0.9em;
+      }
+
+      input:focus {
+        border-color: #87ceeb;
+        box-shadow: 0 0 5px #87ceeb;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: left;
+        width: 30%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-edit-profil">
+      <form
+        class="form-edit-profil"
+        action="/update_profile/{{ user._id}}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+     
+        <div class="foto-profil">
+          <div id="foto" class="foto">
+            {% if user.profile_picture %}
+            <img
+              id="preview"
+              src="data:image/jpeg;base64,{{ user.profile_picture }}"
+              alt="Foto Profil"
+            />
+            {% else %}
+            <img
+              id="preview"
+              src="blank-profile-picture-973460_960_720.jpeg"
+              alt="Foto Profil"
+              width="80"
+              height="80"
+            />
+            {% endif %}
+          </div>
+          <label for="upload-file" class="tombol-upload">
+            <input type="file" id="upload-file" name="foto" accept="image/*" />
+            Upload Foto
+           
+          </label>
+        </div>
+        <div class="inputan">
+          <label for="nama-depan">Nama Depan:</label>
+          <input
+            type="text"
+            id="nama-depan"
+            name="nama-depan"
+            value="{{ user.first_name }}"
+            readonly
+          />
+          <button type="button" class="tombol-edit" data-field="nama-depan">
+            Edit
+          </button>
+        </div>
+        <div class="inputan">
+          <label for="nama-belakang">Nama Belakang</label>
+          <input
+            type="text"
+            id="nama-belakang"
+            name="nama-belakang"
+            value="{{ user.last_name }}"
+            readonly
+          />
+          <button type="button" class="tombol-edit" data-field="nama-belakang">
+            Edit
+          </button>
+        </div>
+        <div class="inputan">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ user.email }}"
+            readonly
+          />
+          <button type="button" class="tombol-edit" data-field="email">
+            Edit
+          </button>
+        </div>
+        <input type="hidden" name="user_id" value="{{ user._id }}" />
+        <div class="inputan">
+          <label for="old-password">Password Lama<br />(WajibDiisi):</label>
+          <input
+            type="password"
+            id="old-password"
+            name="old_password"
+            placeholder="Masukkan password lama..."
+            required
+          />
+        </div>
+        <div class="inputan">
+          <label for="new-password">Password Baru:</label>
+          <input
+            type="password"
+            id="new-password"
+            name="new_password"
+            placeholder="Masukkan password baru..."
+          />
+        </div>
+        <div class="inputan">
+          <label for="confirm-new-password">Konfirmasi Password Baru:</label>
+          <input
+            type="password"
+            id="confirm-new-password"
+            name="confirm_new_password"
+            placeholder="Tulis ulang password baru..."
+          />
+        </div>
+        <button type="submit" class="tombol-konfirm">Tinjau Perubahan</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".tombol-upload input[type='file']").change(function (event) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            $("#preview").attr("src", reader.result);
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        });
+
+        $(".tombol-edit").click(function () {
+          var fieldName = $(this).data("field");
+          $("#" + fieldName)
+            .removeAttr("readonly")
+            .focus();
+        });
+      });
+    </script>
+  </body>
+</html>
